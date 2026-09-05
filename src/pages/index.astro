@@ -6,9 +6,9 @@ const posts = await getPublishedPosts();
 ---
 <BaseLayout>
   <section class="hero">
-    <h1>Your Name <span class="hero-role">Backend Engineer</span></h1>
-    <p>Notes on backend engineering, distributed systems, and AI agents.</p>
-    <div class="hero-links"><a href="https://github.com/JungleLiu-LHJ">GitHub ↗</a><a href="/about">About</a><a href="/rss.xml">RSS</a></div>
+    <h1>Jungle Liu <span class="hero-role">Software Engineer</span></h1>
+    <p>无</p>
+    <div class="hero-links"><a href="https://github.com/JungleLiu-LHJ">GitHub ↗</a><a href="/about">About</a></div>
   </section>
   <section><div class="section-heading"><h2>Latest writing</h2><a href="/blog">All posts →</a></div>{posts.slice(0, 3).map((post) => <PostCard {post} />)}</section>
 </BaseLayout>
