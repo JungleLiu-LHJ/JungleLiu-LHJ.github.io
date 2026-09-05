@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import { getPublishedPosts } from '../../lib/posts'; const posts = await getPublishedPosts(); const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+---
+<BaseLayout title="Tags · Your Name"><div class="page-intro"><h1>Tags</h1><p>Browse writing by subject.</p></div><div class="tag-list">{tags.map((tag) => <a class="button" href={`/tags/${encodeURIComponent(tag)}/`}>#{tag}</a>)}</div></BaseLayout>

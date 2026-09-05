@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPublishedPosts } from '../lib/posts';
+const posts = await getPublishedPosts();
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="eyebrow">HELLO, I AM</div><h1>Your Name</h1>
+    <p><strong>Backend Engineer</strong><br />Golang · Distributed Systems · AI Agents</p>
+    <p>I write about backend engineering, databases, distributed systems, and AI agents.</p>
+    <div class="button-row"><a class="button primary" href="/blog">Blog</a><a class="button" href="/projects">Projects</a><a class="button" href="https://github.com/your-github-username">GitHub</a></div>
+  </section>
+  <section><div class="section-heading"><h2>Latest writing</h2><a href="/blog">All posts →</a></div>{posts.slice(0, 3).map((post) => <PostCard {post} />)}</section>
+</BaseLayout>

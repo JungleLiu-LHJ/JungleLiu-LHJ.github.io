@@ -1,0 +1,26 @@
+---
+const { pathname } = Astro.url;
+const nav = [
+  ['Blog', '/blog'], ['Projects', '/projects'], ['Notes', '/notes'], ['About', '/about'],
+];
+---
+<header class="site-header">
+  <div class="shell nav-wrap">
+    <a class="brand" href="/" aria-label="Home">~/blog</a>
+    <nav aria-label="Primary navigation">
+      {nav.map(([label, href]) => <a class:list={[{ active: pathname === href || pathname.startsWith(`${href}/`) }]} href={href}>{label}</a>)}
+    </nav>
+    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+  </div>
+</header>
+<script is:inline>
+  const button = document.querySelector('.theme-toggle');
+  const saved = localStorage.getItem('theme');
+  const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+  button?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+  });
+</script>
