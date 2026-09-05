@@ -10,17 +10,25 @@ const nav = [
     <nav aria-label="Primary navigation">
       {nav.map(([label, href]) => <a class:list={[{ active: pathname === href || pathname.startsWith(`${href}/`) }]} href={href}>{label}</a>)}
     </nav>
-    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+    <div class="theme-picker" role="group" aria-label="页面主题">
+      <button type="button" data-theme-choice="light" aria-pressed="false">浅色</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">深色</button>
+    </div>
   </div>
 </header>
 <script is:inline>
-  const button = document.querySelector('.theme-toggle');
-  const saved = localStorage.getItem('theme');
-  const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
-  document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
-  button?.addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem('theme', next);
-  });
+  (() => {
+    const buttons = document.querySelectorAll('[data-theme-choice]');
+    const updateSelection = () => buttons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.themeChoice === document.documentElement.dataset.theme));
+    });
+    updateSelection();
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      const theme = button.dataset.themeChoice;
+      document.documentElement.dataset.theme = theme;
+      // Theme switching still works when browser storage is unavailable.
+      try { localStorage.setItem('theme', theme); } catch {}
+      updateSelection();
+    }));
+  })();
 </script>
