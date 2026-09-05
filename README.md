@@ -13,7 +13,7 @@ A static, content-first technical blog built with Astro, Markdown/MDX, and GitHu
 ## First-time setup
 
 1. Create a GitHub repository named `<github-username>.github.io`.
-2. In [astro.config.mjs](./astro.config.mjs), replace `your-github-username` with your actual GitHub username. This is the only URL setting needed for a user-site repository.
+2. The configured site URL is `https://jungleliu-lhj.github.io`. If you fork this project, replace it in [astro.config.mjs](./astro.config.mjs) with your own GitHub Pages URL.
 3. Replace the placeholder name, bio, project cards, and GitHub links in `src/`.
 4. Commit and push the project to the `main` branch.
 

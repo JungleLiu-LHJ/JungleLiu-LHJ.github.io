@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // Replace this with your GitHub Pages URL (or later, your custom domain).
-  site: 'https://your-github-username.github.io',
+  site: 'https://jungleliu-lhj.github.io',
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
